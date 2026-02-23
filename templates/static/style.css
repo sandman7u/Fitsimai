@@ -7,55 +7,32 @@ body {
 }
 
 .container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
     background: #ffffffee;
-    border-radius: 25px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    position: relative;
-}
-
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: fadeIn 1s ease-in;
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 .logo img {
     width: 80px;
-    margin-bottom: 10px;
-    animation: bounce 1s infinite alternate;
+    margin: 10px auto;
 }
 
 h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.5em;
-    margin: 5px 0;
-}
-
-.subtitle {
-    font-size: 1.1em;
-    color: #555;
-    margin-bottom: 25px;
+    font-size: 2em;
+    margin: 5px 0 20px;
 }
 
 input, select, button {
     display: block;
-    width: 90%;
-    margin: 12px auto;
+    width: 100%;
+    margin: 10px 0;
     padding: 14px;
     border-radius: 12px;
     border: 1px solid #ccc;
     font-size: 16px;
-    transition: 0.3s;
-}
-
-input:focus, select:focus {
-    border-color: #1de9b6;
-    box-shadow: 0 0 5px #1de9b6;
-    outline: none;
 }
 
 button {
@@ -63,51 +40,32 @@ button {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    font-size: 1.1em;
     transition: 0.3s;
 }
 
 button:hover {
     background: #00bfa5;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 #result {
-    margin-top: 30px;
+    margin-top: 25px;
     font-weight: bold;
     font-size: 18px;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 15px;
     transition: 0.3s;
-    animation: fadeIn 0.5s ease-in;
 }
-
-#result h2 {
-    margin-bottom: 12px;
-}
-
-#result p { margin: 6px 0; }
-#result .message { font-style: italic; font-size: 1em; margin-top: 12px; }
 
 /* BMI colors */
 #result.low { background: #ff8a80; color: #fff; }
 #result.normal { background: #69f0ae; color: #fff; }
 #result.high { background: #ffab40; color: #fff; }
 
-/* Character animation */
-.character { margin-top: 20px; }
-.character img { width: 120px; animation: float 2s ease-in-out infinite; }
-
-/* Mobile responsive */
-@media (max-width: 600px) {
-    .container { width: 90%; padding: 20px; }
-    input, select, button { width: 95%; font-size: 16px; }
-    h1 { font-size: 2em; }
-    .subtitle { font-size: 1em; }
+/* Mobile first */
+@media (max-width: 500px) {
+    .container { width: 95%; padding: 15px; }
+    h1 { font-size: 1.8em; }
+    input, select, button { font-size: 15px; padding: 12px; }
     #result { font-size: 16px; padding: 15px; }
 }
-
-/* Animations */
-@keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
-@keyframes bounce { from {transform: translateY(0);} to {transform: translateY(-10px);} }
-@keyframes float { 0%,100%{transform: translateY(0);} 50%{transform: translateY(-10px);} }
