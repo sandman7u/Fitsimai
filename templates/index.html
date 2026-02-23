@@ -51,7 +51,7 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   const heightM = height / 100;
   const bmi = (weight / (heightM * heightM)).toFixed(1);
   
-  // BMR calculation (Mifflin-St Jeor)
+  // BMR calculation
   let bmr;
   if(gender === 'male') {
     bmr = 10*weight + 6.25*height - 5*age + 5;
@@ -66,15 +66,31 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   else calories = Math.round(bmr);
   
   const resultDiv = document.getElementById('result');
+  
+  // Determine BMI category & message
+  let category = '';
+  let message = '';
+  
+  if(bmi < 18.5) {
+    category = 'low';
+    message = 'You are underweight. Focus on healthy meals & strength training!';
+  } else if(bmi >= 18.5 && bmi <= 24.9) {
+    category = 'normal';
+    message = 'Great job! Keep following your balanced plan!';
+  } else {
+    category = 'high';
+    message = 'You are overweight. Cardio + balanced diet will help!';
+  }
+  
+  resultDiv.className = category;
   resultDiv.innerHTML = `
     Your BMI: ${bmi} <br>
     Daily Calories: ${calories} kcal <br>
     Suggested Plan: ${goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
                      goal === 'gain' ? 'Calorie surplus + Weight training' :
-                     'Balanced diet + Moderate exercise'}
+                     'Balanced diet + Moderate exercise'} <br>
+    <em>${message}</em>
   `;
 });
 </script>
-
-</body>
-</html>
+   
