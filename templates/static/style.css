@@ -83,3 +83,29 @@ button:hover {
   font-size: 1em;
   margin-top: 12px;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;       /* container shrinks to 90% of screen */
+        padding: 20px;    /* reduce padding on small screens */
+    }
+    
+    input, select, button {
+        width: 95%;       /* inputs/buttons stretch wider for mobile */
+        font-size: 16px;  /* keep text readable */
+    }
+
+    h1 {
+        font-size: 2em;   /* smaller heading for mobile */
+    }
+
+    .subtitle {
+        font-size: 1em;   /* smaller subtitle text */
+    }
+
+    #result {
+        font-size: 16px;  /* smaller result text */
+        padding: 15px;    /* smaller padding */
+    }
+}
