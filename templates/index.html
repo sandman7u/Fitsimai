@@ -38,60 +38,66 @@
 </div>
 
 <script>
-
 document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
-  const age = parseInt(document.getElementById('age').value);
+  // Get all inputs as numbers
+  const age = Number(document.getElementById('age').value);
   const gender = document.getElementById('gender').value;
-  const weight = parseFloat(document.getElementById('weight').value);
-  const height = parseFloat(document.getElementById('height').value);
+  const weight = Number(document.getElementById('weight').value);
+  const height = Number(document.getElementById('height').value);
   const goal = document.getElementById('goal').value;
-  
+
+  if (!age || !weight || !height) {
+    alert('Please enter all values correctly!');
+    return;
+  }
+
   // BMI calculation
   const heightM = height / 100;
-  const bmi = weight / (heightM * heightM); // keep as number
+  const bmi = weight / (heightM * heightM);
   const bmiRounded = bmi.toFixed(1); // for display
-  
-  // BMR calculation
-  let bmr;
-  if(gender === 'male') {
-    bmr = 10*weight + 6.25*height - 5*age + 5;
-  } else {
-    bmr = 10*weight + 6.25*height - 5*age - 161;
-  }
-  
+
+  // BMR calculation (Mifflin-St Jeor)
+  let bmr = (gender === 'male')
+            ? 10*weight + 6.25*height - 5*age + 5
+            : 10*weight + 6.25*height - 5*age - 161;
+
   // Calories based on goal
-  let calories;
-  if(goal === 'lose') calories = Math.round(bmr - 500);
-  else if(goal === 'gain') calories = Math.round(bmr + 500);
-  else calories = Math.round(bmr);
-  
+  let calories = (goal === 'lose') ? Math.round(bmr - 500)
+                 : (goal === 'gain') ? Math.round(bmr + 500)
+                 : Math.round(bmr);
+
   const resultDiv = document.getElementById('result');
-  
-  // Determine BMI category & message
+
+  // Determine BMI category & motivational message
   let category = '';
   let message = '';
-  
-  if(bmi < 18.5) {
+
+  if (bmi < 18.5) {
     category = 'low';
     message = 'You are underweight. Focus on healthy meals & strength training!';
-  } else if(bmi >= 18.5 && bmi <= 24.9) {
+  } else if (bmi >= 18.5 && bmi <= 24.9) {
     category = 'normal';
     message = 'Great job! Keep following your balanced plan!';
-  } else if(bmi > 24.9) {
+  } else {
     category = 'high';
     message = 'You are overweight. Cardio + balanced diet will help!';
   }
-  
+
+  // Apply category class for color
   resultDiv.className = category;
+
+  // Show results
   resultDiv.innerHTML = `
-    Your BMI: ${bmiRounded} <br>
-    Daily Calories: ${calories} kcal <br>
-    Suggested Plan: ${goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
+    <strong>Your BMI:</strong> ${bmiRounded} <br>
+    <strong>Daily Calories:</strong> ${calories} kcal <br>
+    <strong>Suggested Plan:</strong> ${goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
                      goal === 'gain' ? 'Calorie surplus + Weight training' :
                      'Balanced diet + Moderate exercise'} <br>
     <em>${message}</em>
   `;
 });
 </script>
+</body>
+</html>
