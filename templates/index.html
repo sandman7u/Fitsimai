@@ -56,17 +56,14 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
     const height = parseFloat(document.getElementById('height').value);
     const goal = document.getElementById('goal').value;
 
-    // BMI calculation
     const heightM = height / 100;
     const bmi = weight / (heightM * heightM);
     const bmiRounded = bmi.toFixed(1);
 
-    // BMR calculation
     let bmr;
     if(gender === 'male') bmr = 10*weight + 6.25*height - 5*age + 5;
     else bmr = 10*weight + 6.25*height - 5*age - 161;
 
-    // Calories based on goal
     let calories;
     if(goal === 'lose') calories = Math.round(bmr - 500);
     else if(goal === 'gain') calories = Math.round(bmr + 500);
@@ -74,7 +71,6 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
 
     const resultDiv = document.getElementById('result');
 
-    // Determine BMI category & motivational message
     let category = '';
     let message = '';
     if(bmi < 18.5) {
