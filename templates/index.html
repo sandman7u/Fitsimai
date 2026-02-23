@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitSimAI - AI Fitness Planner</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>FitSimAI - Your AI Fitness Planner</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-<div class="container">
 
-    <!-- Logo -->
-    <div class="logo">
-        <img src="static/logo.png" alt="FitSimAI Logo">
-        <h1>FitSimAI</h1>
-    </div>
+<!-- Hero Section -->
+<header class="hero">
+    <img src="static/logo.png" alt="FitSimAI Logo" class="logo">
+    <h1>FitSimAI</h1>
+    <p class="tagline">AI-powered personalized fitness planner</p>
+</header>
 
-    <!-- Fitness Form -->
+<!-- Input Section -->
+<section class="input-section">
     <form id="fitnessForm">
-        <input type="number" id="age" placeholder="Age" required>
-        <select id="gender" required>
-            <option value="" disabled selected>Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-        <input type="number" id="weight" placeholder="Weight (kg)" required>
-        <input type="number" id="height" placeholder="Height (cm)" required>
-        <select id="goal" required>
-            <option value="" disabled selected>Goal</option>
-            <option value="lose">Lose Weight</option>
-            <option value="maintain">Maintain Weight</option>
-            <option value="gain">Gain Muscle</option>
-        </select>
-        <button type="submit">Calculate Plan</button>
+        <div class="form-card">
+            <input type="number" id="age" placeholder="Age" required>
+        </div>
+        <div class="form-card">
+            <select id="gender" required>
+                <option value="" disabled selected>Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="form-card">
+            <input type="number" id="weight" placeholder="Weight (kg)" required>
+        </div>
+        <div class="form-card">
+            <input type="number" id="height" placeholder="Height (cm)" required>
+        </div>
+        <div class="form-card">
+            <select id="goal" required>
+                <option value="" disabled selected>Goal</option>
+                <option value="lose">Lose Weight</option>
+                <option value="maintain">Maintain Weight</option>
+                <option value="gain">Gain Muscle</option>
+            </select>
+        </div>
+        <button type="submit" class="calculate-btn">Calculate Plan</button>
     </form>
+</section>
 
-    <!-- Result Card -->
-    <div id="result"></div>
+<!-- Result Section -->
+<section id="result" class="result-section">
+    <!-- Results appear here -->
+</section>
 
+<!-- Optional Floating Character -->
+<div class="character">
+    <img src="static/character.svg" alt="Fitness Character">
 </div>
 
 <script>
