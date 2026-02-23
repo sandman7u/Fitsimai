@@ -49,7 +49,8 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   
   // BMI calculation
   const heightM = height / 100;
-  const bmi = (weight / (heightM * heightM)).toFixed(1);
+  const bmi = weight / (heightM * heightM); // keep as number
+  const bmiRounded = bmi.toFixed(1); // for display
   
   // BMR calculation
   let bmr;
@@ -77,14 +78,14 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   } else if(bmi >= 18.5 && bmi <= 24.9) {
     category = 'normal';
     message = 'Great job! Keep following your balanced plan!';
-  } else {
+  } else if(bmi > 24.9) {
     category = 'high';
     message = 'You are overweight. Cardio + balanced diet will help!';
   }
   
   resultDiv.className = category;
   resultDiv.innerHTML = `
-    Your BMI: ${bmi} <br>
+    Your BMI: ${bmiRounded} <br>
     Daily Calories: ${calories} kcal <br>
     Suggested Plan: ${goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
                      goal === 'gain' ? 'Calorie surplus + Weight training' :
@@ -93,4 +94,3 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   `;
 });
 </script>
-   
