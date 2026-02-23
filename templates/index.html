@@ -3,103 +3,107 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitSimAI - AI Fitness Planner</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
+
 <div class="container">
-  <h1>FitSimAI</h1>
-  <p class="subtitle">Your AI-powered personalized fitness planner</p>
-  
-  <form id="fitnessForm">
-    <label>Age:</label>
-    <input type="number" id="age" placeholder="Enter your age" required>
-    
-    <label>Gender:</label>
-    <select id="gender" required>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
-    
-    <label>Weight (kg):</label>
-    <input type="number" id="weight" placeholder="Enter your weight" required>
-    
-    <label>Height (cm):</label>
-    <input type="number" id="height" placeholder="Enter your height" required>
-    
-    <label>Goal:</label>
-    <select id="goal" required>
-      <option value="lose">Lose Weight</option>
-      <option value="maintain">Maintain Weight</option>
-      <option value="gain">Gain Muscle</option>
-    </select>
-    
-    <button type="submit">Calculate Plan</button>
-  </form>
-  
-  <div id="result"></div>
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="static/logo.png" alt="FitSimAI Logo">
+        <h1>FitSimAI</h1>
+        <p class="subtitle">Your AI-powered personalized fitness planner</p>
+    </div>
+
+    <!-- Fitness Form -->
+    <form id="fitnessForm">
+        <label>Age:</label>
+        <input type="number" id="age" placeholder="Enter your age" required>
+        
+        <label>Gender:</label>
+        <select id="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        
+        <label>Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight" required>
+        
+        <label>Height (cm):</label>
+        <input type="number" id="height" placeholder="Enter your height" required>
+        
+        <label>Goal:</label>
+        <select id="goal" required>
+            <option value="lose">Lose Weight</option>
+            <option value="maintain">Maintain Weight</option>
+            <option value="gain">Gain Muscle</option>
+        </select>
+        
+        <button type="submit">Calculate Plan</button>
+    </form>
+
+    <!-- Result Card -->
+    <div id="result"></div>
+
+    <!-- Fitness Character -->
+    <div class="character">
+        <img src="static/character.svg" alt="Fitness Character">
+    </div>
+
 </div>
 
 <script>
 document.getElementById('fitnessForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const age = Number(document.getElementById('age').value);
-  const gender = document.getElementById('gender').value;
-  const weight = Number(document.getElementById('weight').value);
-  const height = Number(document.getElementById('height').value);
-  const goal = document.getElementById('goal').value;
-  
-  const heightM = height / 100;
-  const bmi = weight / (heightM * heightM);
-  const bmiRounded = bmi.toFixed(1);
-  
-  // BMR
-  let bmr;
-  if(gender === 'male') bmr = 10*weight + 6.25*height - 5*age + 5;
-  else bmr = 10*weight + 6.25*height - 5*age - 161;
-  
-  // Calories
-  let calories;
-  if(goal === 'lose') calories = Math.round(bmr - 500);
-  else if(goal === 'gain') calories = Math.round(bmr + 500);
-  else calories = Math.round(bmr);
-  
-  const resultDiv = document.getElementById('result');
-  
-  // BMI category & messages + icon
-  let category = '';
-  let message = '';
-  let icon = '';
-  if(bmi < 18.5) {
-    category = 'low';
-    message = 'Underweight – fuel up and gain strength!';
-    icon = '💪';
-  } else if(bmi >= 18.5 && bmi <= 24.9) {
-    category = 'normal';
-    message = 'Perfect! Keep rocking your balanced plan!';
-    icon = '🔥';
-  } else if(bmi > 24.9) {
-    category = 'high';
-    message = 'Overweight – focus on cardio & healthy eating!';
-    icon = '🏃‍♂️';
-  }
-  
-  resultDiv.className = '';
-  resultDiv.classList.add(category);
-  
-  resultDiv.innerHTML = `
-    <h2>${icon} Your Results</h2>
-    <p><strong>BMI:</strong> ${bmiRounded}</p>
-    <p><strong>Daily Calories:</strong> ${calories} kcal</p>
-    <p><strong>Suggested Plan:</strong> ${
-      goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
-      goal === 'gain' ? 'Calorie surplus + Weight training' :
-      'Balanced diet + Moderate exercise'
-    }</p>
-    <p class="message">${message}</p>
-  `;
+    e.preventDefault();
+
+    const age = Number(document.getElementById('age').value);
+    const gender = document.getElementById('gender').value;
+    const weight = Number(document.getElementById('weight').value);
+    const height = Number(document.getElementById('height').value);
+    const goal = document.getElementById('goal').value;
+
+    const heightM = height / 100;
+    const bmi = weight / (heightM * heightM);
+    const bmiRounded = bmi.toFixed(1);
+
+    // BMR calculation
+    let bmr = gender === 'male' ? 10*weight + 6.25*height - 5*age + 5
+                               : 10*weight + 6.25*height - 5*age - 161;
+
+    // Calories goal
+    let calories = goal === 'lose' ? Math.round(bmr - 500)
+                 : goal === 'gain' ? Math.round(bmr + 500)
+                 : Math.round(bmr);
+
+    // Result card
+    const resultDiv = document.getElementById('result');
+
+    let category = '', message = '', icon = '';
+    if(bmi < 18.5) { category = 'low'; message = 'Underweight – fuel up & gain strength!'; icon='💪'; }
+    else if(bmi >= 18.5 && bmi <= 24.9) { category = 'normal'; message = 'Perfect! Keep rocking your balanced plan!'; icon='🔥'; }
+    else { category = 'high'; message = 'Overweight – cardio & healthy eating!'; icon='🏃‍♂️'; }
+
+    resultDiv.className = '';
+    resultDiv.classList.add(category);
+
+    resultDiv.innerHTML = `
+        <h2>${icon} Your Results</h2>
+        <p><strong>BMI:</strong> ${bmiRounded}</p>
+        <p><strong>Daily Calories:</strong> ${calories} kcal</p>
+        <p><strong>Suggested Plan:</strong> ${
+            goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
+            goal === 'gain' ? 'Calorie surplus + Weight training' :
+            'Balanced diet + Moderate exercise'
+        }</p>
+        <p class="message">${message}</p>
+    `;
 });
 </script>
+
 </body>
 </html>
