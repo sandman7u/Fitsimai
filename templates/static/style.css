@@ -1,6 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #80deea);
   color: #333;
   text-align: center;
   padding: 20px;
@@ -9,34 +9,44 @@ body {
 .container {
   max-width: 500px;
   margin: 30px auto;
-  padding: 20px;
+  padding: 25px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
 input, select, button {
   display: block;
   width: 90%;
-  margin: 10px auto;
-  padding: 10px;
-  border-radius: 8px;
+  margin: 12px auto;
+  padding: 12px;
+  border-radius: 12px;
   border: 1px solid #ccc;
+  font-size: 16px;
 }
 
 button {
-  background: #4caf50;
+  background: #1de9b6;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #45a049;
+  background: #00bfa5;
 }
 
 #result {
-  margin-top: 20px;
+  margin-top: 25px;
   font-weight: bold;
   font-size: 18px;
+  padding: 15px;
+  border-radius: 12px;
+  transition: 0.3s;
 }
+
+/* Dynamic colors based on BMI */
+#result.low { background: #ff8a80; color: #fff; }
+#result.normal { background: #69f0ae; color: #fff; }
+#result.high { background: #ffab40; color: #fff; }
