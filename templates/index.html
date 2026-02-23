@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FitSimAI - Fitness Simulator</title>
+    <title>FitSimAI - AI Fitness Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
 <div class="container">
-  <h1>FitSimAI - Your AI Fitness Planner</h1>
+  <h1>FitSimAI</h1>
+  <p class="subtitle">Your AI-powered personalized fitness planner</p>
   
   <form id="fitnessForm">
     <label>Age:</label>
-    <input type="number" id="age" required>
+    <input type="number" id="age" placeholder="Enter your age" required>
     
     <label>Gender:</label>
     <select id="gender" required>
@@ -19,10 +21,10 @@
     </select>
     
     <label>Weight (kg):</label>
-    <input type="number" id="weight" required>
+    <input type="number" id="weight" placeholder="Enter your weight" required>
     
     <label>Height (cm):</label>
-    <input type="number" id="height" required>
+    <input type="number" id="height" placeholder="Enter your height" required>
     
     <label>Goal:</label>
     <select id="goal" required>
@@ -51,7 +53,7 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   const bmi = weight / (heightM * heightM);
   const bmiRounded = bmi.toFixed(1);
   
-  // BMR calculation
+  // BMR
   let bmr;
   if(gender === 'male') bmr = 10*weight + 6.25*height - 5*age + 5;
   else bmr = 10*weight + 6.25*height - 5*age - 161;
@@ -64,31 +66,33 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   
   const resultDiv = document.getElementById('result');
   
-  // BMI category and message
+  // BMI category & messages
   let category = '';
   let message = '';
   if(bmi < 18.5) {
     category = 'low';
-    message = 'You are underweight. Focus on healthy meals & strength training!';
+    message = 'Underweight – let’s fuel up and gain strength 💪!';
   } else if(bmi >= 18.5 && bmi <= 24.9) {
     category = 'normal';
-    message = 'Great job! Keep following your balanced plan!';
+    message = 'Perfect! Keep rocking your balanced plan ✨';
   } else if(bmi > 24.9) {
     category = 'high';
-    message = 'You are overweight. Cardio + balanced diet will help!';
+    message = 'Overweight – let’s focus on cardio & healthy eating 🏃‍♂️🥗';
   }
-
-  // Apply class correctly
+  
   resultDiv.className = '';
   resultDiv.classList.add(category);
   
   resultDiv.innerHTML = `
-    Your BMI: ${bmiRounded} <br>
-    Daily Calories: ${calories} kcal <br>
-    Suggested Plan: ${goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
-                     goal === 'gain' ? 'Calorie surplus + Weight training' :
-                     'Balanced diet + Moderate exercise'} <br>
-    <em>${message}</em>
+    <h2>Results</h2>
+    <p><strong>BMI:</strong> ${bmiRounded}</p>
+    <p><strong>Daily Calories:</strong> ${calories} kcal</p>
+    <p><strong>Suggested Plan:</strong> ${
+      goal === 'lose' ? 'Calorie deficit + Cardio + Strength training' :
+      goal === 'gain' ? 'Calorie surplus + Weight training' :
+      'Balanced diet + Moderate exercise'
+    }</p>
+    <p class="message">${message}</p>
   `;
 });
 </script>
