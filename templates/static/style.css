@@ -1,119 +1,113 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #80deea);
-  color: #333;
-  text-align: center;
-  padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #80deea);
+    color: #333;
+    text-align: center;
+    padding: 20px;
 }
 
 .container {
-  max-width: 550px;
-  margin: 40px auto;
-  padding: 30px;
-  background: #ffffffee;
-  border-radius: 25px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffffee;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in;
+}
+
+.logo img {
+    width: 80px;
+    margin-bottom: 10px;
+    animation: bounce 1s infinite alternate;
 }
 
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 5px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5em;
+    margin: 5px 0;
 }
 
 .subtitle {
-  font-size: 1.1em;
-  color: #555;
-  margin-bottom: 25px;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 25px;
 }
 
 input, select, button {
-  display: block;
-  width: 90%;
-  margin: 12px auto;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  transition: 0.3s;
+    display: block;
+    width: 90%;
+    margin: 12px auto;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 input:focus, select:focus {
-  border-color: #1de9b6;
-  box-shadow: 0 0 5px #1de9b6;
-  outline: none;
+    border-color: #1de9b6;
+    box-shadow: 0 0 5px #1de9b6;
+    outline: none;
 }
 
 button {
-  background: #1de9b6;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1.1em;
-  transition: 0.3s;
+    background: #1de9b6;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: 0.3s;
 }
 
 button:hover {
-  background: #00bfa5;
-  transform: scale(1.03);
+    background: #00bfa5;
+    transform: scale(1.05);
 }
 
 #result {
-  margin-top: 30px;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 20px;
-  border-radius: 20px;
-  transition: 0.3s;
-  animation: fadeIn 0.5s ease-in;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+    animation: fadeIn 0.5s ease-in;
 }
 
 #result h2 {
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
-#result p {
-  margin: 6px 0;
-}
+#result p { margin: 6px 0; }
+#result .message { font-style: italic; font-size: 1em; margin-top: 12px; }
 
-#result .message {
-  font-style: italic;
-  font-size: 1em;
-  margin-top: 12px;
-}
-
-/* Colors per BMI */
+/* BMI colors */
 #result.low { background: #ff8a80; color: #fff; }
 #result.normal { background: #69f0ae; color: #fff; }
 #result.high { background: #ffab40; color: #fff; }
 
-/* Mobile responsiveness */
+/* Character animation */
+.character { margin-top: 20px; }
+.character img { width: 120px; animation: float 2s ease-in-out infinite; }
+
+/* Mobile responsive */
 @media (max-width: 600px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
-    
-    input, select, button {
-        width: 95%;
-        font-size: 16px;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    .subtitle {
-        font-size: 1em;
-    }
-
-    #result {
-        font-size: 16px;
-        padding: 15px;
-    }
+    .container { width: 90%; padding: 20px; }
+    input, select, button { width: 95%; font-size: 16px; }
+    h1 { font-size: 2em; }
+    .subtitle { font-size: 1em; }
+    #result { font-size: 16px; padding: 15px; }
 }
 
-/* Fade-in effect */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* Animations */
+@keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+@keyframes bounce { from {transform: translateY(0);} to {transform: translateY(-10px);} }
+@keyframes float { 0%,100%{transform: translateY(0);} 50%{transform: translateY(-10px);} }
