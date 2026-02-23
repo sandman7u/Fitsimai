@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #f0f8ff, #a0e4f1);
+  background: linear-gradient(135deg, #e0f7fa, #80deea);
   color: #333;
   text-align: center;
   padding: 20px;
@@ -62,20 +62,17 @@ button:hover {
   font-weight: bold;
   font-size: 18px;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 20px;
   transition: 0.3s;
+  animation: fadeIn 0.5s ease-in;
 }
 
 #result h2 {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-#result.low { background: #ff8a80; color: #fff; }
-#result.normal { background: #69f0ae; color: #fff; }
-#result.high { background: #ffab40; color: #fff; }
-
 #result p {
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 #result .message {
@@ -84,28 +81,39 @@ button:hover {
   margin-top: 12px;
 }
 
+/* Colors per BMI */
+#result.low { background: #ff8a80; color: #fff; }
+#result.normal { background: #69f0ae; color: #fff; }
+#result.high { background: #ffab40; color: #fff; }
+
 /* Mobile responsiveness */
 @media (max-width: 600px) {
     .container {
-        width: 90%;       /* container shrinks to 90% of screen */
-        padding: 20px;    /* reduce padding on small screens */
+        width: 90%;
+        padding: 20px;
     }
     
     input, select, button {
-        width: 95%;       /* inputs/buttons stretch wider for mobile */
-        font-size: 16px;  /* keep text readable */
+        width: 95%;
+        font-size: 16px;
     }
 
     h1 {
-        font-size: 2em;   /* smaller heading for mobile */
+        font-size: 2em;
     }
 
     .subtitle {
-        font-size: 1em;   /* smaller subtitle text */
+        font-size: 1em;
     }
 
     #result {
-        font-size: 16px;  /* smaller result text */
-        padding: 15px;    /* smaller padding */
+        font-size: 16px;
+        padding: 15px;
     }
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
