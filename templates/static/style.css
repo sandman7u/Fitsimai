@@ -49,4 +49,4 @@ button:hover {
 /* Dynamic colors based on BMI */
 #result.low { background: #ff8a80; color: #fff; }
 #result.normal { background: #69f0ae; color: #fff; }
-#result.high { background: #ffab40; color: #fff; }
+#result.high { background: #ffab40; color: #fff; } 
