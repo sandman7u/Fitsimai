@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitSimAI - AI Fitness Planner</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
@@ -67,25 +67,29 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
   
   const resultDiv = document.getElementById('result');
   
-  // BMI category & messages
+  // BMI category & messages + icon
   let category = '';
   let message = '';
+  let icon = '';
   if(bmi < 18.5) {
     category = 'low';
-    message = 'Underweight – let’s fuel up and gain strength 💪!';
+    message = 'Underweight – fuel up and gain strength!';
+    icon = '💪';
   } else if(bmi >= 18.5 && bmi <= 24.9) {
     category = 'normal';
-    message = 'Perfect! Keep rocking your balanced plan ✨';
+    message = 'Perfect! Keep rocking your balanced plan!';
+    icon = '🔥';
   } else if(bmi > 24.9) {
     category = 'high';
-    message = 'Overweight – let’s focus on cardio & healthy eating 🏃‍♂️🥗';
+    message = 'Overweight – focus on cardio & healthy eating!';
+    icon = '🏃‍♂️';
   }
   
   resultDiv.className = '';
   resultDiv.classList.add(category);
   
   resultDiv.innerHTML = `
-    <h2>Results</h2>
+    <h2>${icon} Your Results</h2>
     <p><strong>BMI:</strong> ${bmiRounded}</p>
     <p><strong>Daily Calories:</strong> ${calories} kcal</p>
     <p><strong>Suggested Plan:</strong> ${
